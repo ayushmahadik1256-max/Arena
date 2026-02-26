@@ -527,6 +527,89 @@ document.addEventListener("DOMContentLoaded", () => {
   renderEventFeed();
 
   /* ======================
+     COUNTDOWN TIMER
+     ====================== */
+  const countdownDays = document.getElementById("countdown-days");
+  const countdownHours = document.getElementById("countdown-hours");
+  const countdownMinutes = document.getElementById("countdown-minutes");
+  const countdownSeconds = document.getElementById("countdown-seconds");
+  const countdownProgressBar = document.getElementById("countdown-progress-bar");
+
+  // Set target: next occurrence that is 3 days from now (rolling)
+  function getNextArenaDate() {
+    const now = new Date();
+    const target = new Date(now);
+    target.setDate(target.getDate() + 3);
+    target.setHours(18, 0, 0, 0); // 6 PM
+    return target;
+  }
+
+  const arenaTargetDate = getNextArenaDate();
+  const totalDuration = arenaTargetDate.getTime() - Date.now();
+
+  function updateCountdown() {
+    const now = Date.now();
+    const diff = arenaTargetDate.getTime() - now;
+
+    if (diff <= 0) {
+      countdownDays.textContent = "00";
+      countdownHours.textContent = "00";
+      countdownMinutes.textContent = "00";
+      countdownSeconds.textContent = "00";
+      if (countdownProgressBar) countdownProgressBar.style.width = "100%";
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    const newDays = String(days).padStart(2, "0");
+    const newHours = String(hours).padStart(2, "0");
+    const newMinutes = String(minutes).padStart(2, "0");
+    const newSeconds = String(seconds).padStart(2, "0");
+
+    // Tick animation on change
+    if (countdownSeconds.textContent !== newSeconds) {
+      countdownSeconds.classList.remove("tick");
+      void countdownSeconds.offsetWidth;
+      countdownSeconds.classList.add("tick");
+    }
+    if (countdownMinutes.textContent !== newMinutes) {
+      countdownMinutes.classList.remove("tick");
+      void countdownMinutes.offsetWidth;
+      countdownMinutes.classList.add("tick");
+    }
+    if (countdownHours.textContent !== newHours) {
+      countdownHours.classList.remove("tick");
+      void countdownHours.offsetWidth;
+      countdownHours.classList.add("tick");
+    }
+    if (countdownDays.textContent !== newDays) {
+      countdownDays.classList.remove("tick");
+      void countdownDays.offsetWidth;
+      countdownDays.classList.add("tick");
+    }
+
+    countdownDays.textContent = newDays;
+    countdownHours.textContent = newHours;
+    countdownMinutes.textContent = newMinutes;
+    countdownSeconds.textContent = newSeconds;
+
+    // Update progress bar
+    const elapsed = totalDuration - diff;
+    const progressPercent = Math.min((elapsed / totalDuration) * 100, 100);
+    if (countdownProgressBar) {
+      countdownProgressBar.style.width = progressPercent + "%";
+    }
+  }
+
+  // Run immediately, then every second
+  updateCountdown();
+  setInterval(updateCountdown, 1000);
+
+  /* ======================
      HERO STATS COUNTER
      ====================== */
   const statsObserver = new IntersectionObserver(
