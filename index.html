@@ -1,0 +1,435 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Survival Arena - Prove your skill. Outlast your rivals. Only the strongest survive." />
+  <meta name="theme-color" content="#0d0b1a" />
+  <title>Survival Arena - Survive. Compete. Dominate.</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar" role="navigation" aria-label="Main navigation">
+    <div class="navbar-inner">
+      <a href="#hero" class="navbar-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+        <span>SURVIVAL<span class="accent">ARENA</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="#hero" class="active">Home</a></li>
+        <li><a href="#games">Challenges</a></li>
+        <li><a href="#register">Register</a></li>
+        <li><a href="#leaderboard">Leaderboard</a></li>
+        <li><a href="#arena">Arena</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+      <a href="#register" class="nav-cta nav-cta-desktop">Join Now</a>
+      <button class="hamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <!-- Mobile Overlay -->
+    <div class="mobile-menu-overlay"></div>
+    <!-- Mobile Menu -->
+    <div class="mobile-menu">
+      <div class="glass">
+        <a href="#hero">Home</a>
+        <a href="#games">Challenges</a>
+        <a href="#register">Register</a>
+        <a href="#leaderboard">Leaderboard</a>
+        <a href="#arena">Arena</a>
+        <a href="about.html">About</a>
+        <a href="#register" class="nav-cta">Join Now</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========== HERO SECTION ========== -->
+  <section id="hero" class="hero">
+    <!-- Video Background -->
+    <div class="hero-video-bg">
+      <video autoplay muted loop playsinline>
+        <source src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/WhatsApp%20Video%202026-02-26%20at%2012.38.44%20%281%29-orx21D6nVuW15F8GKDZHMJvw6SbCRQ.mp4" type="video/mp4" />
+      </video>
+      <div class="hero-video-overlay"></div>
+    </div>
+
+    <!-- Bottom gradient blend -->
+    <div class="hero-gradient-bottom"></div>
+
+    <!-- Grid Pattern -->
+    <div class="hero-grid"></div>
+
+    <!-- Floating Shapes -->
+    <div class="floating-shape" style="width:140px;height:140px;left:10%;top:20%;background:rgba(232,121,249,0.15);filter:blur(40px)"></div>
+    <div class="floating-shape" style="width:100px;height:100px;left:80%;top:15%;background:rgba(34,211,238,0.15);filter:blur(30px)"></div>
+    <div class="floating-shape" style="width:70px;height:70px;left:70%;top:70%;background:rgba(163,230,53,0.1);filter:blur(30px)"></div>
+    <div class="floating-shape" style="width:120px;height:120px;left:20%;top:75%;background:rgba(129,140,248,0.1);filter:blur(40px)"></div>
+    <div class="floating-shape" style="width:60px;height:60px;left:50%;top:40%;background:rgba(232,121,249,0.08);filter:blur(20px)"></div>
+
+    <!-- Glow Orb -->
+    <div class="hero-glow-orb"></div>
+
+    <!-- Content -->
+    <div class="hero-content">
+      <!-- Badge -->
+      <div class="hero-badge glass">
+        <span class="ping-dot">
+          <span></span>
+          <span></span>
+        </span>
+        Season 1 is Live
+      </div>
+
+      <!-- Headline -->
+      <h1 class="hero-headline">
+        <span class="word">SURVIVE.</span>
+        <span class="word">COMPETE.</span>
+        <span class="word">DOMINATE.</span>
+      </h1>
+
+      <!-- Subheading -->
+      <p class="hero-subheading">Prove your skill. Outlast your rivals. Only the strongest survive.</p>
+
+      <!-- CTA Buttons -->
+      <div class="hero-cta-group">
+        <a href="#register" class="btn-primary">
+          <span style="position:relative;z-index:1">Enter the Arena</span>
+          <span class="shimmer"></span>
+          <span class="pulse-ring-overlay"></span>
+        </a>
+        <a href="#games" class="btn-ghost">Watch Live</a>
+      </div>
+
+      <!-- Glassmorphism Stats -->
+      <div class="hero-stats">
+        <div class="hero-stat">
+          <div class="stat-value" data-count="5K">5K+</div>
+          <div class="stat-label">Players</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-value" data-count="5">5</div>
+          <div class="stat-label">Challenges</div>
+        </div>
+        <div class="hero-stat">
+          <div class="stat-value" data-count="$50K">$50K</div>
+          <div class="stat-label">Prize Pool</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <a href="#games" class="scroll-indicator">
+      <span>Scroll</span>
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m6 9 6 6 6-6"/></svg>
+    </a>
+  </section>
+
+  <!-- ========== GAMES SECTION ========== -->
+  <section id="games" class="section">
+    <div class="section-bg"></div>
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <span class="section-tag" style="color:var(--neon-cyan)">The Challenges</span>
+        <h2 class="section-title">Choose Your Fate</h2>
+        <p class="section-desc">Five deadly arenas. Five unique tests of courage, speed, and intellect. Which will you conquer first?</p>
+      </div>
+      <div class="games-grid">
+        <!-- Game Card 1: The Maze Escape -->
+        <div class="game-card glass reveal" data-color="neon-pink">
+          <div class="card-gradient"></div>
+          <div class="card-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+          </div>
+          <h3 class="card-title">The Maze Escape</h3>
+          <p class="card-desc">Navigate a shifting labyrinth before time runs out. Dead ends reset your progress. Only the sharpest minds survive.</p>
+          <div class="card-meta">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> 1-4</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg> Extreme</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 5 min</span>
+          </div>
+          <div class="card-arrow"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15L15 5M15 5H8M15 5V12"/></svg></div>
+        </div>
+
+        <!-- Game Card 2: Laser Dodge -->
+        <div class="game-card glass reveal" data-color="neon-cyan" style="animation-delay:0.12s">
+          <div class="card-gradient"></div>
+          <div class="card-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 14a1 1 0 0 1-.78-1.63l9.9-10.2a.5.5 0 0 1 .86.46l-1.92 6.02A1 1 0 0 0 13 10h7a1 1 0 0 1 .78 1.63l-9.9 10.2a.5.5 0 0 1-.86-.46l1.92-6.02A1 1 0 0 0 11 14z"/></svg>
+          </div>
+          <h3 class="card-title">Laser Dodge</h3>
+          <p class="card-desc">Dodge an ever-accelerating grid of laser beams. One touch and you're eliminated. Reflexes are everything.</p>
+          <div class="card-meta">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> 1-8</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg> Hard</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 5 min</span>
+          </div>
+          <div class="card-arrow"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15L15 5M15 5H8M15 5V12"/></svg></div>
+        </div>
+
+        <!-- Game Card 3: Memory Grid -->
+        <div class="game-card glass reveal" data-color="neon-lime" style="animation-delay:0.24s">
+          <div class="card-gradient"></div>
+          <div class="card-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="6" height="6" rx="1"/><rect x="16" y="2" width="6" height="6" rx="1"/><rect x="2" y="16" width="6" height="6" rx="1"/><rect x="16" y="16" width="6" height="6" rx="1"/><rect x="9" y="2" width="6" height="6" rx="1"/><rect x="9" y="16" width="6" height="6" rx="1"/><rect x="2" y="9" width="6" height="6" rx="1"/><rect x="16" y="9" width="6" height="6" rx="1"/><rect x="9" y="9" width="6" height="6" rx="1"/></svg>
+          </div>
+          <h3 class="card-title">Memory Grid</h3>
+          <p class="card-desc">Memorize an increasingly complex pattern of lit tiles. Miss one sequence and face elimination. Focus is your weapon.</p>
+          <div class="card-meta">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> 1-6</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg> Medium</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 5 min</span>
+          </div>
+          <div class="card-arrow"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15L15 5M15 5H8M15 5V12"/></svg></div>
+        </div>
+
+        <!-- Game Card 4: Last Step Standing -->
+        <div class="game-card glass reveal" data-color="neon-blue" style="animation-delay:0.36s">
+          <div class="card-gradient"></div>
+          <div class="card-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 16v-2.38C4 11.5 2.97 9.5 3 8c.07-3.87 3-7 7-7 1.37 0 3.87.56 4.46.99C15.04 2.43 17 3.5 19 6c1.35 1.68 2.26 4.33 1 7"/><path d="m20 21 .5-2.65a.5.5 0 0 0-.16-.44c-.21-.19-.47-.14-.68.04l-1.16 1.1"/><path d="m12 22-.5-2.65a.5.5 0 0 1 .16-.44c.21-.19.47-.14.68.04l1.16 1.1"/><path d="M4.02 12c1.35-1.5 2.98-2 4.98-2 1 0 3 .5 4 2 1 1.5 2 4 2 6"/><path d="M12 22V18"/><path d="M7 20h10"/></svg>
+          </div>
+          <h3 class="card-title">Last Step Standing</h3>
+          <p class="card-desc">A crumbling platform with vanishing tiles. Choose your path wisely or plunge into the void below.</p>
+          <div class="card-meta">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> 2-10</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg> Extreme</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 5 min</span>
+          </div>
+          <div class="card-arrow"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15L15 5M15 5H8M15 5V12"/></svg></div>
+        </div>
+
+        <!-- Game Card 5: Shadow Hunt -->
+        <div class="game-card glass reveal" data-color="neon-pink" style="animation-delay:0.48s">
+          <div class="card-gradient"></div>
+          <div class="card-icon-wrap">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+          </div>
+          <h3 class="card-title">Shadow Hunt</h3>
+          <p class="card-desc">Track invisible opponents through a pitch-black arena using only sound cues. The hunter becomes the hunted.</p>
+          <div class="card-meta">
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg> 2-6</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg> Hard</span>
+            <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg> 5 min</span>
+          </div>
+          <div class="card-arrow"><svg viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M5 15L15 5M15 5H8M15 5V12"/></svg></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== REGISTRATION SECTION ========== -->
+  <section id="register" class="section">
+    <div class="section-bg"></div>
+    <div class="section-inner">
+      <div class="register-grid">
+        <!-- Left: Info -->
+        <div class="register-info reveal-left">
+          <span class="section-tag" style="color:var(--neon-pink)">Registration</span>
+          <h2 class="section-title">Claim Your Spot</h2>
+          <p style="color:var(--muted-foreground);max-width:28rem;margin-bottom:2rem">Only the bravest enter the arena. Register now and prepare for the challenge of a lifetime. Spaces are limited.</p>
+          <div class="register-features">
+            <div class="register-feature">
+              <div class="icon-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+              </div>
+              <span>Real-time competition tracking</span>
+            </div>
+            <div class="register-feature">
+              <div class="icon-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+              </div>
+              <span>Exclusive arena access pass</span>
+            </div>
+            <div class="register-feature">
+              <div class="icon-wrap">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+              </div>
+              <span>Compete for the $50K prize pool</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Right: Form -->
+        <div class="reveal-right">
+          <div id="form-container">
+            <form id="register-form" class="register-form glass" novalidate>
+              <!-- Name -->
+              <div class="form-field">
+                <input type="text" id="reg-name" placeholder="Full Name" autocomplete="name" />
+                <div class="field-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg>
+                </div>
+                <div class="focus-line"></div>
+                <div class="field-error" style="display:none">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                </div>
+              </div>
+              <!-- Email -->
+              <div class="form-field">
+                <input type="email" id="reg-email" placeholder="Email Address" autocomplete="email" />
+                <div class="field-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+                </div>
+                <div class="focus-line"></div>
+                <div class="field-error" style="display:none">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                </div>
+              </div>
+              <!-- Age -->
+              <div class="form-field">
+                <input type="number" id="reg-age" placeholder="Age" min="16" max="99" />
+                <div class="field-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8 2v4"/><path d="M16 2v4"/><rect width="18" height="18" x="3" y="4" rx="2"/><path d="M3 10h18"/></svg>
+                </div>
+                <div class="focus-line"></div>
+                <div class="field-error" style="display:none">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                </div>
+              </div>
+              <!-- Game Select -->
+              <div class="form-field">
+                <select id="reg-game">
+                  <option value="">Select a challenge...</option>
+                  <option value="maze-escape">The Maze Escape</option>
+                  <option value="laser-dodge">Laser Dodge</option>
+                  <option value="memory-grid">Memory Grid</option>
+                  <option value="last-step">Last Step Standing</option>
+                  <option value="shadow-hunt">Shadow Hunt</option>
+                </select>
+                <div class="field-icon">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="6" y1="12" x2="10" y2="12"/><line x1="8" y1="10" x2="8" y2="14"/><line x1="15" y1="13" x2="15.01" y2="13"/><line x1="18" y1="11" x2="18.01" y2="11"/><rect width="20" height="12" x="2" y="6" rx="2"/></svg>
+                </div>
+                <div class="focus-line"></div>
+                <div class="field-error" style="display:none">
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><line x1="12" y1="8" x2="12" y2="12"/><line x1="12" y1="16" x2="12.01" y2="16"/></svg>
+                </div>
+              </div>
+              <!-- Submit -->
+              <button type="submit" class="btn-submit">
+                <span class="btn-text">Enter the Arena</span>
+                <span class="progress-bar"></span>
+                <span class="submitting-text">Entering Arena...</span>
+                <span class="shimmer"></span>
+              </button>
+            </form>
+          </div>
+          <!-- Success State -->
+          <div id="form-success-container" class="form-success glass neon-border-pink" style="display:none">
+            <div class="success-icon-wrap">
+              <div class="success-icon">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"/><path d="m9 11 3 3L22 4"/></svg>
+              </div>
+              <span class="success-ring-1"></span>
+              <span class="success-ring-2"></span>
+            </div>
+            <h3>You're In!</h3>
+            <p>Welcome to the arena, <strong id="success-player-name"></strong>. Prepare yourself for <strong id="success-game-name"></strong>.</p>
+            <button id="reset-form-btn" class="btn-secondary">Register Another Player</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== LEADERBOARD SECTION ========== -->
+  <section id="leaderboard" class="section">
+    <div class="section-bg"></div>
+    <div class="section-inner">
+      <div class="leaderboard-wrap">
+        <div class="section-header reveal">
+          <span class="section-tag" style="color:var(--neon-lime)">Rankings</span>
+          <h2 class="section-title">Leaderboard</h2>
+          <p class="section-desc">The top survivors battle for glory and the ultimate prize.</p>
+        </div>
+        <!-- Tabs -->
+        <div class="leaderboard-tabs reveal">
+          <div class="tabs-inner glass">
+            <button class="tab-btn active" data-tab="today">Today</button>
+            <button class="tab-btn" data-tab="weekly">Weekly</button>
+            <button class="tab-btn" data-tab="all-time">All-Time</button>
+          </div>
+        </div>
+        <!-- Table -->
+        <div class="leaderboard-table glass reveal">
+          <div class="lb-header">
+            <div class="lb-col-rank">Rank</div>
+            <div class="lb-col-player">Player</div>
+            <div class="lb-col-game">Challenge</div>
+            <div class="lb-col-score">Score</div>
+          </div>
+          <div id="leaderboard-body"></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== PLAYER ARENA SECTION ========== -->
+  <section id="arena" class="section">
+    <div class="section-bg"></div>
+    <div class="section-inner">
+      <div class="section-header reveal">
+        <span class="section-tag" style="color:var(--destructive)">Live Arena</span>
+        <h2 class="section-title">Player Arena</h2>
+        <p class="section-desc">Watch the battle unfold in real-time. Select a player to inspect their vitals, rank changes, and combat status.</p>
+        <div class="live-badge">
+          <span class="ping-dot">
+            <span></span>
+            <span></span>
+          </span>
+          <span class="live-text">Live</span>
+        </div>
+      </div>
+
+      <div class="arena-grid">
+        <!-- Left: Player List -->
+        <div class="reveal-left">
+          <div class="player-list glass">
+            <h3 class="player-list-title">Combatants (<span id="alive-count">5</span> alive)</h3>
+            <div id="player-list-items"></div>
+          </div>
+        </div>
+
+        <!-- Right: Detail + Feed -->
+        <div class="reveal-right" style="display:flex;flex-direction:column;gap:2rem">
+          <div id="player-detail" class="player-detail glass"></div>
+          <div class="event-feed glass">
+            <div class="event-feed-title">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+              Battle Feed
+            </div>
+            <div id="event-feed-items"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="section-bg"></div>
+    <div class="footer-inner">
+      <a href="#hero" class="footer-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+        <span>SURVIVAL<span class="accent">ARENA</span></span>
+      </a>
+      <nav class="footer-links">
+        <a href="#hero">Home</a>
+        <a href="#games">Challenges</a>
+        <a href="#register">Register</a>
+        <a href="#leaderboard">Leaderboard</a>
+        <a href="#arena">Arena</a>
+        <a href="about.html">About</a>
+      </nav>
+      <div class="footer-divider"></div>
+      <p class="footer-copy">Survival Arena. Produced by Ayush Mahadik. Designed by Aniket Bandgar. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Meet the creative minds behind Survival Arena - Ayush Mahadik and Aniket Bandgar." />
+  <meta name="theme-color" content="#0d0b1a" />
+  <title>About Us - Survival Arena</title>
+  <link rel="stylesheet" href="styles.css" />
+  <style>
+    /* ========== ABOUT PAGE STYLES ========== */
+    .about-hero {
+      position: relative;
+      min-height: 50vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      padding: 8rem 1.5rem 4rem;
+    }
+    .about-hero-bg {
+      position: absolute;
+      inset: 0;
+      z-index: 0;
+      pointer-events: none;
+    }
+    .about-hero-bg .orb-1 {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      border-radius: 50%;
+      background: rgba(232, 121, 249, 0.08);
+      filter: blur(120px);
+      top: -20%;
+      left: -10%;
+      animation: glow-pulse 4s ease-in-out infinite;
+    }
+    .about-hero-bg .orb-2 {
+      position: absolute;
+      width: 500px;
+      height: 500px;
+      border-radius: 50%;
+      background: rgba(0, 242, 255, 0.06);
+      filter: blur(120px);
+      bottom: -30%;
+      right: -10%;
+      animation: glow-pulse 5s ease-in-out 1s infinite;
+    }
+    .about-hero-bg .grid-overlay {
+      position: absolute;
+      inset: 0;
+      opacity: 0.03;
+      background-image: linear-gradient(rgba(255,255,255,0.1) 1px, transparent 1px),
+                         linear-gradient(90deg, rgba(255,255,255,0.1) 1px, transparent 1px);
+      background-size: 80px 80px;
+    }
+    .about-hero-content {
+      position: relative;
+      z-index: 10;
+      text-align: center;
+      max-width: 48rem;
+      margin: 0 auto;
+    }
+    .about-hero-content .about-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--neon-cyan);
+      margin-bottom: 1rem;
+      animation: fadeInUp 0.6s ease both;
+    }
+    .about-hero-content h1 {
+      font-family: var(--font-display);
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      line-height: 1.1;
+      margin-bottom: 1.25rem;
+      animation: fadeInUp 0.7s ease 0.1s both;
+    }
+    .about-hero-content h1 .accent-cyan {
+      color: #00F2FF;
+      text-shadow: 0 0 30px rgba(0, 242, 255, 0.5);
+    }
+    .about-hero-content .about-sub {
+      font-size: 1.125rem;
+      color: var(--muted-foreground);
+      line-height: 1.7;
+      max-width: 36rem;
+      margin: 0 auto;
+      animation: fadeInUp 0.7s ease 0.25s both;
+    }
+
+    /* ========== TEAM SECTION ========== */
+    .team-section {
+      position: relative;
+      padding: 5rem 1.5rem 6rem;
+      overflow: hidden;
+    }
+    .team-section-inner {
+      max-width: 72rem;
+      margin: 0 auto;
+    }
+    .team-header {
+      text-align: center;
+      margin-bottom: 4rem;
+    }
+    .team-header .team-tag {
+      display: inline-block;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.2em;
+      color: var(--neon-pink);
+      margin-bottom: 0.75rem;
+    }
+    .team-header h2 {
+      font-size: clamp(1.75rem, 4vw, 2.75rem);
+      font-weight: 700;
+      text-wrap: balance;
+    }
+    .team-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2.5rem;
+      max-width: 56rem;
+      margin: 0 auto;
+    }
+    @media (min-width: 768px) {
+      .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 3rem;
+      }
+    }
+
+    /* ========== TEAM CARD ========== */
+    .team-card {
+      position: relative;
+      border-radius: 1.25rem;
+      padding: 2.5rem 2rem;
+      text-align: center;
+      transition: transform 0.4s ease, box-shadow 0.5s ease;
+      overflow: hidden;
+    }
+    .team-card:hover {
+      transform: translateY(-8px) scale(1.02);
+    }
+    .team-card .card-glow {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      transition: opacity 0.5s;
+      pointer-events: none;
+      border-radius: 1.25rem;
+    }
+    .team-card:hover .card-glow { opacity: 1; }
+
+    /* Avatar */
+    .team-avatar-wrap {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 1.75rem;
+    }
+    .team-avatar {
+      width: 7rem;
+      height: 7rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-size: 1.75rem;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      position: relative;
+      z-index: 2;
+      transition: transform 0.3s ease;
+    }
+    .team-card:hover .team-avatar {
+      transform: scale(1.08);
+    }
+    .team-avatar-ring {
+      position: absolute;
+      inset: -6px;
+      border-radius: 50%;
+      border: 2px solid;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .team-card:hover .team-avatar-ring {
+      opacity: 1;
+      animation: pulse-ring 2s ease infinite;
+    }
+    .team-avatar-glow {
+      position: absolute;
+      inset: -20px;
+      border-radius: 50%;
+      filter: blur(30px);
+      opacity: 0;
+      transition: opacity 0.5s;
+      z-index: 0;
+    }
+    .team-card:hover .team-avatar-glow { opacity: 1; }
+
+    /* Card: Producer */
+    .team-card.producer .team-avatar {
+      background: rgba(0, 242, 255, 0.12);
+      color: #00F2FF;
+      border: 2px solid rgba(0, 242, 255, 0.25);
+    }
+    .team-card.producer .team-avatar-ring { border-color: rgba(0, 242, 255, 0.4); }
+    .team-card.producer .team-avatar-glow { background: rgba(0, 242, 255, 0.15); }
+    .team-card.producer .card-glow { background: linear-gradient(135deg, rgba(0, 242, 255, 0.08), transparent 70%); }
+    .team-card.producer:hover { box-shadow: 0 0 30px rgba(0, 242, 255, 0.15), inset 0 0 30px rgba(0, 242, 255, 0.03); }
+    .team-card.producer .team-role { color: #00F2FF; }
+
+    /* Card: Designer */
+    .team-card.designer .team-avatar {
+      background: rgba(232, 121, 249, 0.12);
+      color: var(--neon-pink);
+      border: 2px solid rgba(232, 121, 249, 0.25);
+    }
+    .team-card.designer .team-avatar-ring { border-color: rgba(232, 121, 249, 0.4); }
+    .team-card.designer .team-avatar-glow { background: rgba(232, 121, 249, 0.15); }
+    .team-card.designer .card-glow { background: linear-gradient(135deg, rgba(232, 121, 249, 0.08), transparent 70%); }
+    .team-card.designer:hover { box-shadow: 0 0 30px rgba(232, 121, 249, 0.15), inset 0 0 30px rgba(232, 121, 249, 0.03); }
+    .team-card.designer .team-role { color: var(--neon-pink); }
+
+    .team-name {
+      font-size: 1.5rem;
+      font-weight: 700;
+      margin-bottom: 0.375rem;
+    }
+    .team-role {
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      margin-bottom: 1.25rem;
+    }
+    .team-bio {
+      font-size: 0.9rem;
+      color: var(--muted-foreground);
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+
+    /* Social Links */
+    .team-socials {
+      display: flex;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+    .team-social-link {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 2.5rem;
+      height: 2.5rem;
+      border-radius: 50%;
+      background: rgba(255, 255, 255, 0.05);
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      color: var(--muted-foreground);
+      transition: all 0.3s ease;
+    }
+    .team-social-link:hover {
+      color: var(--foreground);
+      background: rgba(255, 255, 255, 0.1);
+      border-color: rgba(255, 255, 255, 0.25);
+      transform: translateY(-3px);
+    }
+    .team-social-link svg { width: 1.1rem; height: 1.1rem; }
+
+    /* ========== MISSION SECTION ========== */
+    .mission-section {
+      position: relative;
+      padding: 5rem 1.5rem 6rem;
+      overflow: hidden;
+    }
+    .mission-inner {
+      max-width: 64rem;
+      margin: 0 auto;
+    }
+    .mission-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 2rem;
+    }
+    @media (min-width: 768px) {
+      .mission-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+    .mission-card {
+      border-radius: 1rem;
+      padding: 2rem;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.4s;
+    }
+    .mission-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 0 20px rgba(255, 255, 255, 0.05);
+    }
+    .mission-icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 3.5rem;
+      height: 3.5rem;
+      border-radius: 0.75rem;
+      margin-bottom: 1.25rem;
+    }
+    .mission-icon svg { width: 1.5rem; height: 1.5rem; }
+    .mission-icon.cyan { background: rgba(0, 242, 255, 0.1); color: #00F2FF; }
+    .mission-icon.pink { background: rgba(232, 121, 249, 0.1); color: var(--neon-pink); }
+    .mission-icon.lime { background: rgba(163, 230, 53, 0.1); color: var(--neon-lime); }
+    .mission-card h3 {
+      font-size: 1.125rem;
+      font-weight: 700;
+      margin-bottom: 0.75rem;
+    }
+    .mission-card p {
+      font-size: 0.875rem;
+      color: var(--muted-foreground);
+      line-height: 1.6;
+    }
+
+    /* ========== BACK LINK ========== */
+    .back-link-wrap {
+      text-align: center;
+      padding: 2rem 1.5rem 5rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      padding: 0.75rem 2rem;
+      border-radius: 0.75rem;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: white;
+      background: linear-gradient(135deg, #00F2FF, #0066FF);
+      box-shadow: 0 0 20px rgba(0, 242, 255, 0.2);
+      transition: transform 0.2s, box-shadow 0.3s;
+    }
+    .back-link:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 30px rgba(0, 242, 255, 0.4);
+    }
+    .back-link svg { width: 1rem; height: 1rem; }
+  </style>
+</head>
+<body>
+
+  <!-- ========== NAVBAR ========== -->
+  <nav class="navbar scrolled" role="navigation" aria-label="Main navigation">
+    <div class="navbar-inner">
+      <a href="index.html#hero" class="navbar-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+        <span>SURVIVAL<span class="accent">ARENA</span></span>
+      </a>
+      <ul class="nav-links">
+        <li><a href="index.html#hero">Home</a></li>
+        <li><a href="index.html#games">Challenges</a></li>
+        <li><a href="index.html#register">Register</a></li>
+        <li><a href="index.html#leaderboard">Leaderboard</a></li>
+        <li><a href="about.html" class="active">About</a></li>
+      </ul>
+      <a href="index.html#register" class="nav-cta nav-cta-desktop">Join Now</a>
+      <button class="hamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div class="mobile-menu-overlay"></div>
+    <div class="mobile-menu">
+      <div class="glass">
+        <a href="index.html#hero">Home</a>
+        <a href="index.html#games">Challenges</a>
+        <a href="index.html#register">Register</a>
+        <a href="index.html#leaderboard">Leaderboard</a>
+        <a href="about.html" class="active">About</a>
+        <a href="index.html#register" class="nav-cta">Join Now</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ========== ABOUT HERO ========== -->
+  <section class="about-hero">
+    <div class="about-hero-bg">
+      <div class="orb-1"></div>
+      <div class="orb-2"></div>
+      <div class="grid-overlay"></div>
+    </div>
+    <div class="about-hero-content">
+      <span class="about-tag">About Us</span>
+      <h1>The Minds Behind <span class="accent-cyan">The Arena</span></h1>
+      <p class="about-sub">We are a two-person team driven by a passion for immersive gaming experiences. Every pixel, every animation, and every challenge is crafted to push players to their limits.</p>
+    </div>
+  </section>
+
+  <!-- ========== TEAM SECTION ========== -->
+  <section class="team-section">
+    <div class="team-section-inner">
+      <div class="team-header reveal">
+        <span class="team-tag">The Team</span>
+        <h2>Meet the Creators</h2>
+      </div>
+
+      <div class="team-grid">
+        <!-- Ayush Mahadik - Producer -->
+        <div class="team-card glass producer reveal">
+          <div class="card-glow"></div>
+          <div class="team-avatar-wrap">
+            <div class="team-avatar">AM</div>
+            <div class="team-avatar-ring"></div>
+            <div class="team-avatar-glow"></div>
+          </div>
+          <h3 class="team-name">Ayush Mahadik</h3>
+          <p class="team-role">Producer</p>
+          <p class="team-bio">Orchestrates every aspect of the Survival Arena from concept to launch. Ayush drives the vision, coordinates the game mechanics, and ensures every challenge delivers the adrenaline rush players crave.</p>
+          <div class="team-socials">
+            <a href="#" class="team-social-link" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+            </a>
+            <a href="#" class="team-social-link" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="#" class="team-social-link" aria-label="Email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Aniket Bandgar - Designer -->
+        <div class="team-card glass designer reveal">
+          <div class="card-glow"></div>
+          <div class="team-avatar-wrap">
+            <div class="team-avatar">AB</div>
+            <div class="team-avatar-ring"></div>
+            <div class="team-avatar-glow"></div>
+          </div>
+          <h3 class="team-name">Aniket Bandgar</h3>
+          <p class="team-role">Designer</p>
+          <p class="team-bio">The creative force behind every neon glow, every glassmorphism card, and every pixel-perfect animation. Aniket crafts the visual identity that makes Survival Arena an unforgettable experience.</p>
+          <div class="team-socials">
+            <a href="#" class="team-social-link" aria-label="GitHub">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>
+            </a>
+            <a href="#" class="team-social-link" aria-label="LinkedIn">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect width="4" height="12" x="2" y="9"/><circle cx="4" cy="4" r="2"/></svg>
+            </a>
+            <a href="#" class="team-social-link" aria-label="Email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect width="20" height="16" x="2" y="4" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== MISSION / VALUES ========== -->
+  <section class="mission-section">
+    <div class="mission-inner">
+      <div class="team-header reveal">
+        <span class="team-tag">Our Vision</span>
+        <h2>What Drives Us</h2>
+      </div>
+      <div class="mission-grid">
+        <div class="mission-card glass reveal">
+          <div class="mission-icon cyan">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+          </div>
+          <h3>High-Stakes Thrills</h3>
+          <p>Every game is designed to test your limits. We believe the best experiences come when the pressure is real and the stakes matter.</p>
+        </div>
+        <div class="mission-card glass reveal">
+          <div class="mission-icon pink">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M12 2a14.5 14.5 0 0 0 0 20 14.5 14.5 0 0 0 0-20"/><path d="M2 12h20"/></svg>
+          </div>
+          <h3>Immersive Design</h3>
+          <p>From neon-lit arenas to cinematic animations, every visual detail is crafted to pull players deep into the Survival Arena universe.</p>
+        </div>
+        <div class="mission-card glass reveal">
+          <div class="mission-icon lime">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H6a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+          </div>
+          <h3>Community First</h3>
+          <p>Built for players, by players. We prioritize fair competition, real-time engagement, and a community that celebrates both grit and skill.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== BACK TO HOME ========== -->
+  <div class="back-link-wrap reveal">
+    <a href="index.html" class="back-link">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="m12 19-7-7 7-7"/><path d="M19 12H5"/></svg>
+      Back to Arena
+    </a>
+  </div>
+
+  <!-- ========== FOOTER ========== -->
+  <footer class="footer">
+    <div class="section-bg"></div>
+    <div class="footer-inner">
+      <a href="index.html#hero" class="footer-logo">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M8.5 14.5A2.5 2.5 0 0 0 11 12c0-1.38-.5-2-1-3-1.072-2.143-.224-4.054 2-6 .5 2.5 2 4.9 4 6.5 2 1.6 3 3.5 3 5.5a7 7 0 1 1-14 0c0-1.153.433-2.294 1-3a2.5 2.5 0 0 0 2.5 2.5z"/></svg>
+        <span>SURVIVAL<span class="accent">ARENA</span></span>
+      </a>
+      <nav class="footer-links">
+        <a href="index.html#hero">Home</a>
+        <a href="index.html#games">Challenges</a>
+        <a href="index.html#register">Register</a>
+        <a href="index.html#leaderboard">Leaderboard</a>
+        <a href="about.html">About</a>
+      </nav>
+      <div class="footer-divider"></div>
+      <p class="footer-copy">Survival Arena. Produced by Ayush Mahadik. Designed by Aniket Bandgar. All rights reserved.</p>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll reveal for about page
+    const revealEls = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+        }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(el => observer.observe(el));
+
+    // Hamburger menu
+    const hamburger = document.querySelector('.hamburger');
+    const mobileMenu = document.querySelector('.mobile-menu');
+    const overlay = document.querySelector('.mobile-menu-overlay');
+    if (hamburger) {
+      hamburger.addEventListener('click', () => {
+        hamburger.classList.toggle('open');
+        mobileMenu.classList.toggle('show');
+        overlay.classList.toggle('show');
+      });
+      overlay.addEventListener('click', () => {
+        hamburger.classList.remove('open');
+        mobileMenu.classList.remove('show');
+        overlay.classList.remove('show');
+      });
+      mobileMenu.querySelectorAll('a').forEach(a => {
+        a.addEventListener('click', () => {
+          hamburger.classList.remove('open');
+          mobileMenu.classList.remove('show');
+          overlay.classList.remove('show');
+        });
+      });
+    }
+  </script>
+</body>
+</html>
