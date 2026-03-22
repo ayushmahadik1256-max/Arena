@@ -17,8 +17,8 @@ export default async function TeacherHistoryPage() {
         id,
         is_within_range,
         distance_meters,
-        created_at,
-        profiles (full_name)
+        marked_at,
+        profiles:student_id (full_name)
       )
     `)
     .eq("teacher_id", user?.id)

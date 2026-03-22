@@ -4,7 +4,6 @@ CREATE TABLE IF NOT EXISTS public.profiles (
   email TEXT NOT NULL,
   full_name TEXT,
   role TEXT NOT NULL CHECK (role IN ('teacher', 'student')),
-  division TEXT,
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
@@ -14,44 +13,31 @@ CREATE POLICY "Users can view their own profile" ON public.profiles FOR SELECT U
 CREATE POLICY "Users can update their own profile" ON public.profiles FOR UPDATE USING (auth.uid() = id);
 CREATE POLICY "Users can insert their own profile" ON public.profiles FOR INSERT WITH CHECK (auth.uid() = id);
 
--- Create subjects table
+-- Create subjects table (teacher-specific)
 CREATE TABLE IF NOT EXISTS public.subjects (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
+  teacher_id UUID NOT NULL REFERENCES public.profiles(id) ON DELETE CASCADE,
   name TEXT NOT NULL,
-  code TEXT UNIQUE NOT NULL,
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
 ALTER TABLE public.subjects ENABLE ROW LEVEL SECURITY;
-CREATE POLICY "Anyone can view subjects" ON public.subjects FOR SELECT TO authenticated USING (true);
+CREATE POLICY "Teachers can view their own subjects" ON public.subjects FOR SELECT USING (auth.uid() = teacher_id);
+CREATE POLICY "Teachers can create subjects" ON public.subjects FOR INSERT WITH CHECK (auth.uid() = teacher_id);
+CREATE POLICY "Teachers can delete their subjects" ON public.subjects FOR DELETE USING (auth.uid() = teacher_id);
 
--- Insert default subjects
-INSERT INTO public.subjects (name, code) VALUES
-  ('Mathematics', 'MATH101'),
-  ('Physics', 'PHY101'),
-  ('Chemistry', 'CHEM101'),
-  ('Computer Science', 'CS101'),
-  ('English', 'ENG101'),
-  ('Biology', 'BIO101')
-ON CONFLICT (code) DO NOTHING;
-
--- Create divisions table
+-- Create divisions table (teacher-specific)
 CREATE TABLE IF NOT EXISTS public.divisions (
   id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  name TEXT UNIQUE NOT NULL,
+  teacher_id UUID NOT NULL REFERENCES public.profiles(id) ON DELETE CASCADE,
+  name TEXT NOT NULL,
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
 ALTER TABLE public.divisions ENABLE ROW LEVEL SECURITY;
-CREATE POLICY "Anyone can view divisions" ON public.divisions FOR SELECT TO authenticated USING (true);
-
--- Insert default divisions
-INSERT INTO public.divisions (name) VALUES
-  ('A'),
-  ('B'),
-  ('C'),
-  ('D')
-ON CONFLICT (name) DO NOTHING;
+CREATE POLICY "Teachers can view their own divisions" ON public.divisions FOR SELECT USING (auth.uid() = teacher_id);
+CREATE POLICY "Teachers can create divisions" ON public.divisions FOR INSERT WITH CHECK (auth.uid() = teacher_id);
+CREATE POLICY "Teachers can delete their divisions" ON public.divisions FOR DELETE USING (auth.uid() = teacher_id);
 
 -- Create sessions table for teacher-created attendance sessions
 CREATE TABLE IF NOT EXISTS public.sessions (
@@ -62,9 +48,8 @@ CREATE TABLE IF NOT EXISTS public.sessions (
   session_code TEXT NOT NULL,
   latitude DOUBLE PRECISION NOT NULL,
   longitude DOUBLE PRECISION NOT NULL,
+  radius_meters INTEGER NOT NULL DEFAULT 100,
   is_active BOOLEAN DEFAULT TRUE,
-  start_time TIMESTAMPTZ DEFAULT NOW(),
-  end_time TIMESTAMPTZ,
   created_at TIMESTAMPTZ DEFAULT NOW()
 );
 
@@ -82,7 +67,8 @@ CREATE TABLE IF NOT EXISTS public.attendance_records (
   student_id UUID NOT NULL REFERENCES public.profiles(id) ON DELETE CASCADE,
   latitude DOUBLE PRECISION NOT NULL,
   longitude DOUBLE PRECISION NOT NULL,
-  distance_from_teacher DOUBLE PRECISION NOT NULL,
+  distance_meters INTEGER NOT NULL,
+  is_within_range BOOLEAN NOT NULL DEFAULT FALSE,
   marked_at TIMESTAMPTZ DEFAULT NOW(),
   UNIQUE(session_id, student_id)
 );

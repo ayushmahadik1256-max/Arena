@@ -18,7 +18,7 @@ interface AttendanceRecord {
   id: string;
   is_within_range: boolean;
   distance_meters: number;
-  created_at: string;
+  marked_at: string;
   profiles: { full_name: string | null } | null;
 }
 
@@ -42,7 +42,7 @@ export function SessionHistoryList({ sessions }: { sessions: Session[] }) {
       record.profiles?.full_name || "Unknown",
       record.is_within_range ? "Present" : "Out of Range",
       record.distance_meters.toString(),
-      formatTime(record.created_at),
+      formatTime(record.marked_at),
     ]);
 
     const csvContent = [
@@ -184,7 +184,7 @@ export function SessionHistoryList({ sessions }: { sessions: Session[] }) {
                             {record.profiles?.full_name || "Unknown Student"}
                           </p>
                           <p className="text-xs text-muted-foreground">
-                            {formatTime(record.created_at)}
+                            {formatTime(record.marked_at)}
                           </p>
                         </div>
                         <div className="text-right">

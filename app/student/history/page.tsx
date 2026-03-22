@@ -19,7 +19,7 @@ export default async function StudentHistoryPage() {
       )
     `)
     .eq("student_id", user?.id)
-    .order("created_at", { ascending: false });
+    .order("marked_at", { ascending: false });
 
   return (
     <div className="space-y-6">
@@ -62,12 +62,12 @@ export default async function StudentHistoryPage() {
                   </p>
                   <p className="text-sm text-muted-foreground">
                     {record.sessions?.divisions?.name || "No Division"} -{" "}
-                    {formatDate(record.created_at)}
+                    {formatDate(record.marked_at)}
                   </p>
                 </div>
                 <div className="text-right">
                   <p className="text-sm font-medium text-foreground">
-                    {formatTime(record.created_at)}
+                    {formatTime(record.marked_at)}
                   </p>
                   <p
                     className={`text-xs ${
