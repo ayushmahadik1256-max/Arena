@@ -21,13 +21,14 @@ export default function SignUpPage() {
     setIsLoading(true);
 
     const supabase = createClient();
+    // Use the current origin for redirect - this works in both v0 preview and deployed environments
+    const redirectUrl = `${window.location.origin}/auth/callback`;
+    
     const { error } = await supabase.auth.signUp({
       email,
       password,
       options: {
-        emailRedirectTo:
-          process.env.NEXT_PUBLIC_DEV_SUPABASE_REDIRECT_URL ||
-          `${window.location.origin}/auth/callback`,
+        emailRedirectTo: redirectUrl,
         data: {
           full_name: fullName,
           role: role,
