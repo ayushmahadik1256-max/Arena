@@ -24,12 +24,7 @@ export function SubjectManager({ subjects }: { subjects: Subject[] }) {
     setIsLoading(true);
     const supabase = createClient();
 
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-
     const { error } = await supabase.from("subjects").insert({
-      teacher_id: user?.id,
       name: name.trim(),
     });
 

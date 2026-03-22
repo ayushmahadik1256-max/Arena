@@ -16,8 +16,7 @@ import {
 
 interface AttendanceRecord {
   id: string;
-  is_within_range: boolean;
-  distance_meters: number;
+  distance_from_teacher: number;
   marked_at: string;
   profiles: { full_name: string | null } | null;
 }
@@ -27,7 +26,6 @@ interface Session {
   session_code: string;
   created_at: string;
   is_active: boolean;
-  radius_meters: number;
   subjects: { name: string } | null;
   divisions: { name: string } | null;
   attendance_records: AttendanceRecord[];
@@ -37,13 +35,17 @@ export function SessionHistoryList({ sessions }: { sessions: Session[] }) {
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
   function exportToCSV(session: Session) {
+    const allowedRadius = 100;
     const headers = ["Student Name", "Status", "Distance (m)", "Time"];
-    const rows = session.attendance_records.map((record) => [
-      record.profiles?.full_name || "Unknown",
-      record.is_within_range ? "Present" : "Out of Range",
-      record.distance_meters.toString(),
-      formatTime(record.marked_at),
-    ]);
+    const rows = session.attendance_records.map((record) => {
+      const isPresent = record.distance_from_teacher <= allowedRadius;
+      return [
+        record.profiles?.full_name || "Unknown",
+        isPresent ? "Present" : "Out of Range",
+        record.distance_from_teacher.toString(),
+        formatTime(record.marked_at),
+      ];
+    });
 
     const csvContent = [
       `Session: ${session.subjects?.name || "Unknown"} - ${session.divisions?.name || "No Division"}`,
@@ -81,7 +83,10 @@ export function SessionHistoryList({ sessions }: { sessions: Session[] }) {
     <div className="space-y-3">
       {sessions.map((session) => {
         const isExpanded = expandedId === session.id;
-        const presentCount = session.attendance_records.filter((r) => r.is_within_range).length;
+        const allowedRadius = 100;
+        const presentCount = session.attendance_records.filter(
+          (r) => r.distance_from_teacher <= allowedRadius
+        ).length;
 
         return (
           <div
@@ -164,43 +169,46 @@ export function SessionHistoryList({ sessions }: { sessions: Session[] }) {
                   </div>
                 ) : (
                   <div className="divide-y divide-border">
-                    {session.attendance_records.map((record) => (
-                      <div key={record.id} className="p-4 flex items-center gap-3">
-                        <div
-                          className={`w-8 h-8 rounded-full flex items-center justify-center ${
-                            record.is_within_range
-                              ? "bg-success/10 text-success"
-                              : "bg-destructive/10 text-destructive"
-                          }`}
-                        >
-                          {record.is_within_range ? (
-                            <CheckCircle className="w-4 h-4" />
-                          ) : (
-                            <XCircle className="w-4 h-4" />
-                          )}
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <p className="text-sm font-medium text-foreground truncate">
-                            {record.profiles?.full_name || "Unknown Student"}
-                          </p>
-                          <p className="text-xs text-muted-foreground">
-                            {formatTime(record.marked_at)}
-                          </p>
-                        </div>
-                        <div className="text-right">
-                          <p
-                            className={`text-xs font-medium ${
-                              record.is_within_range ? "text-success" : "text-destructive"
+                    {session.attendance_records.map((record) => {
+                      const isPresent = record.distance_from_teacher <= allowedRadius;
+                      return (
+                        <div key={record.id} className="p-4 flex items-center gap-3">
+                          <div
+                            className={`w-8 h-8 rounded-full flex items-center justify-center ${
+                              isPresent
+                                ? "bg-success/10 text-success"
+                                : "bg-destructive/10 text-destructive"
                             }`}
                           >
-                            {record.is_within_range ? "Present" : "Out of Range"}
-                          </p>
-                          <p className="text-xs text-muted-foreground">
-                            {record.distance_meters}m
-                          </p>
+                            {isPresent ? (
+                              <CheckCircle className="w-4 h-4" />
+                            ) : (
+                              <XCircle className="w-4 h-4" />
+                            )}
+                          </div>
+                          <div className="flex-1 min-w-0">
+                            <p className="text-sm font-medium text-foreground truncate">
+                              {record.profiles?.full_name || "Unknown Student"}
+                            </p>
+                            <p className="text-xs text-muted-foreground">
+                              {formatTime(record.marked_at)}
+                            </p>
+                          </div>
+                          <div className="text-right">
+                            <p
+                              className={`text-xs font-medium ${
+                                isPresent ? "text-success" : "text-destructive"
+                              }`}
+                            >
+                              {isPresent ? "Present" : "Out of Range"}
+                            </p>
+                            <p className="text-xs text-muted-foreground">
+                              {record.distance_from_teacher}m
+                            </p>
+                          </div>
                         </div>
-                      </div>
-                    ))}
+                      );
+                    })}
                   </div>
                 )}
               </div>

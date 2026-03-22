@@ -24,12 +24,7 @@ export function DivisionManager({ divisions }: { divisions: Division[] }) {
     setIsLoading(true);
     const supabase = createClient();
 
-    const {
-      data: { user },
-    } = await supabase.auth.getUser();
-
     const { error } = await supabase.from("divisions").insert({
-      teacher_id: user?.id,
       name: name.trim(),
     });
 

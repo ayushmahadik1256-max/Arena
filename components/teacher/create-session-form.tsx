@@ -26,7 +26,6 @@ export function CreateSessionForm({
 }) {
   const [subjectId, setSubjectId] = useState("");
   const [divisionId, setDivisionId] = useState("");
-  const [radius, setRadius] = useState(100);
   const [isLoading, setIsLoading] = useState(false);
   const [isGettingLocation, setIsGettingLocation] = useState(false);
   const [location, setLocation] = useState<{ lat: number; lng: number } | null>(null);
@@ -94,7 +93,6 @@ export function CreateSessionForm({
       session_code: sessionCode,
       latitude: location.lat,
       longitude: location.lng,
-      radius_meters: radius,
       is_active: true,
     });
 
@@ -178,26 +176,6 @@ export function CreateSessionForm({
               ))}
             </select>
           )}
-        </div>
-
-        <div>
-          <label className="block text-sm font-medium text-foreground mb-1.5">
-            <div className="flex items-center gap-2">
-              <MapPin className="w-4 h-4 text-muted-foreground" />
-              Allowed Radius (meters)
-            </div>
-          </label>
-          <input
-            type="number"
-            value={radius}
-            onChange={(e) => setRadius(parseInt(e.target.value) || 100)}
-            min={10}
-            max={1000}
-            className="w-full px-3 py-2.5 bg-background border border-input rounded-lg text-foreground focus:outline-none focus:ring-2 focus:ring-ring focus:border-transparent transition-all"
-          />
-          <p className="text-xs text-muted-foreground mt-1">
-            Students must be within this distance to mark attendance
-          </p>
         </div>
 
         <div className="p-3 bg-muted rounded-lg">

@@ -147,7 +147,9 @@ export function MarkAttendanceForm() {
       session.longitude
     );
 
-    const isWithinRange = distance <= session.radius_meters;
+    // Default radius is 100 meters
+    const allowedRadius = 100;
+    const isWithinRange = distance <= allowedRadius;
 
     // Insert attendance record
     const { error: insertError } = await supabase.from("attendance_records").insert({
@@ -155,8 +157,7 @@ export function MarkAttendanceForm() {
       student_id: user.id,
       latitude: location.lat,
       longitude: location.lng,
-      is_within_range: isWithinRange,
-      distance_meters: Math.round(distance),
+      distance_from_teacher: Math.round(distance),
     });
 
     if (insertError) {
@@ -172,7 +173,7 @@ export function MarkAttendanceForm() {
       toast.success("Attendance marked successfully!");
     } else {
       setStatus("error");
-      setMessage(`You are ${Math.round(distance)}m away. Required: within ${session.radius_meters}m`);
+      setMessage(`You are ${Math.round(distance)}m away. Required: within ${allowedRadius}m`);
     }
 
     setIsLoading(false);
